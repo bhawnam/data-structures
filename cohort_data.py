@@ -111,9 +111,28 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
 
-    return []
+    for line in cohort_data:
+      line = line.strip().split("|")
+      full_name = f"{line[0]} {line[1]}"
+      if line[2] == "Dumbledore's Army":
+        dumbledores_army.append(full_name)
+      elif line[2] == "Gryffindor":
+        gryffindor.append(full_name)
+      elif line[2] == "Hufflepuff":
+        hufflepuff.append(full_name) 
+      elif line[2] == "Ravenclaw":
+        ravenclaw.append(full_name)
+      elif line[2] == "Slytherin":
+        slytherin.append(full_name)
+      else:
+        if line[4] == "G":
+          ghosts.append(full_name)
+        elif line[4] == "I":
+          instructors.append(full_name)
+
+    return [sorted(dumbledores_army),sorted(gryffindor),sorted(hufflepuff), sorted(ravenclaw), sorted(slytherin), sorted(ghosts),sorted(instructors)]
 
 
 def all_data(filename):
@@ -137,8 +156,17 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
-
+    cohort_data = open(filename)
+    
+    for line in cohort_data:
+      line = line.strip().split("|")
+      full_name = f"{line[0]} {line[1]}"
+      house = line[2]
+      advisor = line[3]
+      cohort = line[4]
+      person_tuple = (full_name, house, advisor, cohort)
+      all_data.append(person_tuple)
+      
     return all_data
 
 
