@@ -60,9 +60,9 @@ def students_by_cohort(filename, cohort='All'):
     cohort_data = open(filename)
     
     for line in cohort_data:
-      line = line.split("|")
+      line = line.strip().split("|")
       full_name = f"{line[0]} {line[1]}"
-      
+
       if cohort == "All" and len(line[4]) > 2:
         students.append(full_name)
         
