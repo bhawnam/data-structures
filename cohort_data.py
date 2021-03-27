@@ -20,7 +20,7 @@ def all_houses(filename):
     cohort_data = open(filename)
 
     for line in cohort_data:
-      line = line.split("|")
+      line = line.strip().split("|")
       if len(line[2]) > 0:
         houses.add(line[2])
 
@@ -63,7 +63,7 @@ def students_by_cohort(filename, cohort='All'):
       line = line.strip().split("|")
       full_name = f"{line[0]} {line[1]}"
 
-      if cohort == "All" and len(line[4]) > 2:
+      if cohort == "All" and len(line[4]) > 1:
         students.append(full_name)
         
       elif cohort == line[4]:
@@ -190,9 +190,14 @@ def get_cohort_for(filename, name):
     Return:
       - str: the person's cohort or None
     """
-
-    # TODO: replace this with your code
-
+    cohort_data = open(filename)
+    
+    for line in cohort_data:
+      line = line.strip().split("|")
+      full_name = f"{line[0]} {line[1]}"
+      if full_name == name:
+         cohort_name = line[4]
+         return cohort_name
 
 def find_duped_last_names(filename):
     """Return a set of duplicated last names that exist in the data.
@@ -207,9 +212,20 @@ def find_duped_last_names(filename):
     Return:
       - set[str]: a set of strings
     """
+    cohort_data = open(filename)
+    last_names = set()
+    duplicate_names = set()
 
-    # TODO: replace this with your code
+    for line in cohort_data:
+      line = line.strip().split("|")
+      last_name = line[1]
 
+      if last_name in last_names and last_name not in duplicate_names:
+          duplicate_names.add(last_name)
+      else:    
+          last_names.add(last_name)
+
+    return duplicate_names
 
 def get_housemates_for(filename, name):
     """Return a set of housemates for the given student.
@@ -222,8 +238,27 @@ def get_housemates_for(filename, name):
     >>> get_housemates_for('cohort_data.txt', 'Hermione Granger')
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
+    housemates = set()
+    
+    cohort_data = open(filename)
+    for line in cohort_data:
+      line = line.strip().split("|")
+      full_name = f"{line[0]} {line[1]}"
+        
+      if full_name == name:
+         cohort = line[4]
+         house = line[2]
+         break
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)     
+    for line in cohort_data:
+      line = line.strip().split("|")
+      full_name = f"{line[0]} {line[1]}"
+      if cohort == line[4] and house == line[2] and full_name != name:
+          housemates.add(full_name)
+          
+    return housemates
+
 
 
 ##############################################################################
