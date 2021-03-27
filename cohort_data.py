@@ -250,12 +250,16 @@ def get_housemates_for(filename, name):
          house = line[2]
          break
 
+    cohort_data.close()
+
     cohort_data = open(filename)     
     for line in cohort_data:
       line = line.strip().split("|")
       full_name = f"{line[0]} {line[1]}"
       if cohort == line[4] and house == line[2] and full_name != name:
           housemates.add(full_name)
+
+    cohort_data.close()      
           
     return housemates
 
