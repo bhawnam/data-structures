@@ -171,7 +171,7 @@ def all_data(filename):
       line = line.strip().split("|")
       first_name, last_name, house, advisor, cohort_name = line
       full_name = f"{line[0]} {line[1]}"
-      person_tuple = (full_name, house, advisor, cohort)
+      person_tuple = (full_name, house, advisor, cohort_name)
       all_data.append(person_tuple)
       
     return all_data
@@ -206,6 +206,7 @@ def get_cohort_for(filename, name):
          cohort_name = line[4]
          return cohort_name
 
+
 def find_duped_last_names(filename):
     """Return a set of duplicated last names that exist in the data.
 
@@ -233,6 +234,7 @@ def find_duped_last_names(filename):
           last_names.add(last_name)
 
     return duplicate_names
+
 
 def get_housemates_for(filename, name):
     """Return a set of housemates for the given student.
