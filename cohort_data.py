@@ -169,10 +169,8 @@ def all_data(filename):
     
     for line in cohort_data:
       line = line.strip().split("|")
+      first_name, last_name, house, advisor, cohort_name = line
       full_name = f"{line[0]} {line[1]}"
-      house = line[2]
-      advisor = line[3]
-      cohort = line[4]
       person_tuple = (full_name, house, advisor, cohort)
       all_data.append(person_tuple)
       
