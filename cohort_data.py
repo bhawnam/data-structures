@@ -119,15 +119,15 @@ def all_names_by_house(filename):
       line = line.strip().split("|")
       first_name, last_name, house, advisor, cohort_name = line
       full_name = f"{line[0]} {line[1]}"
-      if advisor == "Dumbledore's Army":
+      if house == "Dumbledore's Army":
         dumbledores_army.append(full_name)
-      elif advisor == "Gryffindor":
+      elif house == "Gryffindor":
         gryffindor.append(full_name)
-      elif advisor == "Hufflepuff":
+      elif house == "Hufflepuff":
         hufflepuff.append(full_name) 
-      elif advisor == "Ravenclaw":
+      elif house == "Ravenclaw":
         ravenclaw.append(full_name)
-      elif advisor == "Slytherin":
+      elif house == "Slytherin":
         slytherin.append(full_name)
       else:
         if cohort_name == "G":
